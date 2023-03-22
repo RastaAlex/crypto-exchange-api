@@ -1,0 +1,16 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Account {
+  id                      Int      @id @default(autoincrement())
+  cryptoAsset             String
+  referenceCurrency       String
+  balanceInCryptoAsset    Float
+  balanceInReferenceCurrency Float
+}
