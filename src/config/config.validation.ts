@@ -1,6 +1,21 @@
 import * as Joi from 'joi';
 
-export function validate(config: any) {
+interface AppConfig {
+  app: {
+    port: number;
+  };
+  database: {
+    provider: string;
+    host: string;
+    port: number;
+    user: string;
+    password: string;
+    database: string;
+    ssl: boolean;
+  };
+}
+
+export function validate(config: AppConfig) {
   const schema = Joi.object({
     app: Joi.object({
       port: Joi.number().integer().min(0).max(65535),

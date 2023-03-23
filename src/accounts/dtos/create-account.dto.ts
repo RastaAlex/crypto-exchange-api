@@ -1,5 +1,5 @@
 export class CreateAccountDto {
-    cryptoAsset: string;
-    referenceCurrency: string;
-    balanceInCryptoAsset: number;
+  cryptoAsset: string;
+  referenceCurrency: string;
+  balanceInCryptoAsset: number;
 }

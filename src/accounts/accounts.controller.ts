@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { AccountsService } from './accounts.service';
 import { Account } from '@prisma/client';
 import { CreateAccountDto } from './dtos/create-account.dto';

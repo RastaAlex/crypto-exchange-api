@@ -1,7 +1,7 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import * as cron from 'node-cron';
-import { PrismaService } from '../prisma/prisma.service';
-import { CryptoService } from '../crypto/crypto.service';
+import { PrismaService } from '@prisma/prisma.service';
+import { CryptoService } from '@crypto/crypto.service';
 import { Account } from '@prisma/client';
 import { CreateAccountDto } from './dtos/create-account.dto';
 
@@ -41,14 +41,14 @@ export class AccountsService implements OnModuleInit {
 
   private async updateAccountBalances() {
     const accounts = await this.getAllAccounts();
-  
+
     for (const account of accounts) {
       const pair = account.cryptoAsset + account.referenceCurrency;
       const rate = this.cryptoService.getExchangeRate(pair);
-  
+
       if (rate) {
         const updatedBalance = account.balanceInCryptoAsset * rate;
-  
+
         await this.prismaService.account.update({
           where: { id: account.id },
           data: { balanceInReferenceCurrency: updatedBalance },

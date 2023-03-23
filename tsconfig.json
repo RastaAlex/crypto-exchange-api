@@ -1,21 +1,26 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
     "module": "commonjs",
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
     "target": "es2017",
+    "lib": ["es6"],
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
-    "incremental": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "strictNullChecks": false,
-    "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
-  }
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "paths": {
+      "@accounts/*": ["accounts/*"],
+      "@config/*": ["config/*"],
+      "@crypto/*": ["crypto/*"],
+      "@prisma/*": ["prisma/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
 }
