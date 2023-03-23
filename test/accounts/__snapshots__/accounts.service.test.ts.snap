@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccountsService createAccount should create a new account 1`] = `
+{
+  "balanceInCryptoAsset": 1,
+  "balanceInReferenceCurrency": 0,
+  "cryptoAsset": "BTC",
+  "id": 105,
+  "referenceCurrency": "USD",
+}
+`;
+
+exports[`AccountsService getAccountById should return the account with the specified id 1`] = `
+{
+  "balanceInCryptoAsset": 1,
+  "balanceInReferenceCurrency": 0,
+  "cryptoAsset": "BTC",
+  "id": 34,
+  "referenceCurrency": "USD",
+}
+`;
+
+exports[`AccountsService getAllAccounts should return all accounts 1`] = `
+[
+  {
+    "balanceInCryptoAsset": 1,
+    "balanceInReferenceCurrency": 0,
+    "cryptoAsset": "BTC",
+    "id": 106,
+    "referenceCurrency": "USD",
+  },
+]
+`;

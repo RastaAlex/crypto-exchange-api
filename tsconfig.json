@@ -19,7 +19,7 @@
       "@accounts/*": ["accounts/*"],
       "@config/*": ["config/*"],
       "@crypto/*": ["crypto/*"],
-      "@prisma/*": ["prisma/*"]
+      "@database/*": ["database/*"],
     }
   },
   "exclude": ["node_modules", "dist"]

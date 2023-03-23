@@ -17,11 +17,11 @@ export const config = {
   },
   database: {
     provider: 'postgresql',
-    host: process.env.POSTGRES_HOST,
+    host: process.env.POSTGRES_HOST || '',
     port: parseInt(process.env.POSTGRES_PORT as string, 10),
-    user: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DB,
+    user: process.env.POSTGRES_USER || '',
+    password: process.env.POSTGRES_PASSWORD || '',
+    database: process.env.POSTGRES_DB || '',
     ssl: process.env.NODE_ENV === 'production',
   },
 };

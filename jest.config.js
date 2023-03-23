@@ -16,9 +16,9 @@ module.exports = {
   testPathIgnorePatterns: ['/node_modules/', '__snapshots__'],
   testMatch: ['**/test/**/*.test.[jt]s'],
   moduleNameMapper: {
-    '@accounts/(.*)': '<rootDir>/src/accounts/$1',
-    '@config/(.*)': '<rootDir>/src/config/$1',
-    '@crypto/(.*)': '<rootDir>/src/crypto/$1',
-    '@prisma/(.*)': '<rootDir>/src/prisma/$1',
-  },
+      '^@accounts/(.*)$': '<rootDir>/src/accounts/$1',
+      '^@config/(.*)$': '<rootDir>/src/config/$1',
+      '^@crypto/(.*)$': '<rootDir>/src/crypto/$1',
+      '^@database/(.*)$': '<rootDir>/src/database/$1',
+    },
 };
