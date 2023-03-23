@@ -9,7 +9,16 @@ export class CryptoService implements OnModuleInit {
     this.ws = new WebSocket('wss://ws.kraken.com');
 
     this.ws.on('open', () => {
-      this.ws.send(JSON.stringify({ event: 'subscribe', pair: ['BTC/USD', 'ETH/USD'], subscription: { name: 'ticker' } }));
+      this.ws.send(JSON.stringify({ event: 'subscribe', pair: [
+      'BTC/USD', 'ETH/USD', 'BCH/USD',
+      'BTC/EUR', 'ETH/EUR', 'BCH/EUR',
+      'BTC/CAD', 'ETH/CAD', 'BCH/CAD',
+      'BTC/JPY', 'ETH/JPY', 'BCH/JPY',
+      'BTC/GBP', 'ETH/GBP', 'BCH/GBP',
+      'BTC/CHF', 'ETH/CHF', 'BCH/CHF',
+      'BTC/AUD', 'ETH/AUD', 'BCH/AUD',
+    ],
+       subscription: { name: 'ticker' } }));
     });
 
     this.ws.on('message', (data: WebSocket.Data) => {
@@ -23,8 +32,8 @@ export class CryptoService implements OnModuleInit {
     if (message[1] && message[1].c) {
       let pair = message[3].replace('/', '');
 
-      if (pair === 'XBTUSD') {
-        pair = 'BTCUSD';
+      if (pair.startsWith('XBT')) {
+        pair = pair.replace('XBT', 'BTC');
       }
 
       const rate = parseFloat(message[1].c);
