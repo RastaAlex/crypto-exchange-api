@@ -38,7 +38,7 @@ export class CryptoService implements OnModuleInit {
 
       const rate = parseFloat(message[1].c);
 
-      this.exchangeRates[pair] = rate;
+      this.exchangeRates[pair] = rate;;
     }
   }
 

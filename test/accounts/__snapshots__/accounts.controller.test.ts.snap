@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AccountsController createAccount should create and return a new account 1`] = `
-{
+CryptoAccountDto {
   "balanceInCryptoAsset": 1,
   "balanceInReferenceCurrency": 10,
   "cryptoAsset": "BTC",
@@ -10,8 +10,8 @@ exports[`AccountsController createAccount should create and return a new account
 }
 `;
 
-exports[`AccountsController getAccountById should return an account with the specified id 1`] = `
-{
+exports[`AccountsController fetchAccountById should return an account with the specified id 1`] = `
+CryptoAccountDto {
   "balanceInCryptoAsset": 1,
   "balanceInReferenceCurrency": 10,
   "cryptoAsset": "BTC",
@@ -19,12 +19,10 @@ exports[`AccountsController getAccountById should return an account with the spe
   "referenceCurrency": "USD",
 }
 `;
-
-exports[`AccountsController getAccountById should return null if the account is not found 1`] = `null`;
 
 exports[`AccountsController getAllAccounts should return an array of accounts 1`] = `
 [
-  {
+  CryptoAccountDto {
     "balanceInCryptoAsset": 1,
     "balanceInReferenceCurrency": 10,
     "cryptoAsset": "BTC",

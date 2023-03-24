@@ -17,13 +17,13 @@ describe('CryptoController', () => {
   });
 
   describe('getExchangeRate', () => {
-    it('should return exchange rate for the given pair', () => {
+    it('should return exchange rate for the given pair', async () => {
       const mockPair = 'BTCUSD';
       const mockRate = 1.1;
 
       jest.spyOn(cryptoService, 'getExchangeRate').mockImplementation(() => mockRate);
 
-      const result = cryptoController.getExchangeRate('btc', 'usd');
+      const result = await cryptoController.getCurrencyExchangeRate('btc', 'usd');
 
       expect(cryptoService.getExchangeRate).toHaveBeenCalledWith(mockPair);
       expect(result).toEqual({[mockPair]: mockRate});

@@ -2,9 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AccountsService } from '@accounts/accounts.service';
 import { PrismaService } from '@database/prisma.service';
 import { CryptoService } from '@crypto/crypto.service';
-import { CreateAccountDto } from '@accounts/dtos/create-account.dto';
-import { Account } from '@prisma/client';
-import { CronJob } from 'cron';
+import { CryptoAccountDto } from '@accounts/dtos/crypto-account.dto';
 
 jest.useFakeTimers();
 
@@ -34,13 +32,15 @@ describe('AccountsService', () => {
 
   describe('createAccount', () => {
     it('should create a new account', async () => {
-      const createAccountDto: CreateAccountDto = {
+      const CryptoAccountDto: CryptoAccountDto = {
+        id: 1,
         cryptoAsset: 'BTC',
         referenceCurrency: 'USD',
         balanceInCryptoAsset: 1,
+        balanceInReferenceCurrency: 10,
       };
 
-      const account = await accountsService.createAccount(createAccountDto);
+      const account = await accountsService.createAccount(CryptoAccountDto);
       expect(account).toBeDefined();
       expect(account).toMatchSnapshot();
     });
@@ -48,13 +48,15 @@ describe('AccountsService', () => {
 
   describe('getAllAccounts', () => {
     it('should return all accounts', async () => {
-      const createAccountDto: CreateAccountDto = {
+      const CryptoAccountDto: CryptoAccountDto = {
+        id: 1,
         cryptoAsset: 'BTC',
         referenceCurrency: 'USD',
         balanceInCryptoAsset: 1,
+        balanceInReferenceCurrency: 10,
       };
 
-      await accountsService.createAccount(createAccountDto);
+      await accountsService.createAccount(CryptoAccountDto);
       const accounts = await accountsService.getAllAccounts();
       expect(accounts).toBeDefined();
       expect(accounts).toMatchSnapshot();

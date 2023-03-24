@@ -3,7 +3,7 @@ import * as cron from 'node-cron';
 import { PrismaService } from '@database/prisma.service';
 import { CryptoService } from '@crypto/crypto.service';
 import { Account } from '@prisma/client';
-import { CreateAccountDto } from './dtos/create-account.dto';
+import { CryptoAccountDto } from './dtos/crypto-account.dto';
 
 @Injectable()
 export class AccountsService implements OnModuleInit {
@@ -16,8 +16,8 @@ export class AccountsService implements OnModuleInit {
     cron.schedule('0 0 * * *', () => this.updateAccountBalances());
   }
 
-  async createAccount(createAccountDto: CreateAccountDto): Promise<Account> {
-    const { cryptoAsset, referenceCurrency, balanceInCryptoAsset } = createAccountDto;
+  async createAccount(CryptoAccountDto: CryptoAccountDto): Promise<Account> {
+    const { cryptoAsset, referenceCurrency, balanceInCryptoAsset } = CryptoAccountDto;
 
     return await this.prismaService.account.create({
       data: {
@@ -34,14 +34,13 @@ export class AccountsService implements OnModuleInit {
   }
 
   async getAccountById(id: number): Promise<Account | null> {
-    console.log('getAccountById started');
-    const account = await this.prismaService.account.findUnique({ where: { id } });
-    console.log('getAccountById finished');
+    const account = await this.prismaService.account.findUnique({
+      where: { id },
+    });
     return account;
   }
 
   public async updateAccountBalances() {
-    console.log('Before updating balances...');
     const accounts = await this.getAllAccounts();
 
     for (const account of accounts) {
@@ -56,7 +55,6 @@ export class AccountsService implements OnModuleInit {
           data: { balanceInReferenceCurrency: updatedBalance },
         });
       }
-      console.log('After updating balances...');
     }
   }
 }
