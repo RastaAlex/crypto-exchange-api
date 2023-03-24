@@ -1,73 +1,122 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+## Crypto Exchange Api
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This application allows users to manage their cryptocurrency accounts and fetch the latest exchange rates for supported cryptocurrencies and fiat currencies.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+1. Allow to get exchange rate for cryptocurrencies to fiat currencies using the Kraken WebSockets API.
+2. The system calculates and stores the balance of each account in the reference currency according to the latest exchange rate.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Supported Cryptocurrencies
 
-## Installation
+- Bitcoin (BTC)
+- Bitcoin Cash (BCH)
+- Ethereum (ETH)
 
-```bash
-$ npm install
-```
+## Supported Fiat Currencies
 
-## Running the app
+- United States Dollar (USD)
+- Euro (EUR)
+- Canadian Dollar (CAD)
+- Japanese Yen (JPY)
+- British Pound (GBP)
+- Swiss Franc (CHF)
+- Australian Dollar (AUD)
 
-```bash
-# development
-$ npm run start
+## Technology Stack
 
-# watch mode
-$ npm run start:dev
+- Node.js
+- NestJS
+- TypeScript
+- Prisma
+- Jest
+- node-cron
+- WebSocket
+- Kraken API
 
-# production mode
-$ npm run start:prod
-```
+## Getting Started
 
-## Test
+### Requirements
+
+- Node.js
+- npm
+
+### Installation
+
+1. Clone the repository:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+git clone https://github.com/RastaAlex/crypto-exchange-api.git
 ```
 
-## Support
+2. Change to the project directory:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+cd crypto-exchange-api
+```
 
-## Stay in touch
+3. Install dependencies:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+npm install
+```
+
+### Setting up Environment Variables
+
+- Rename the .env.example file in the project root directory to .env.
+- Open the .env file in a text editor.
+- Set the values for the environment variables.
+
+### Running the Database
+
+The project uses PostgreSQL as the database. You can run the database either locally or in Docker.
+For Docker use:
+
+```bash
+npm run start:docker:db
+```
+
+### Running the Application
+
+```bash
+npm run start:dev
+```
+## API Endpoints:
+
+Get Exchange Rates
+
+```bash
+GET /crypto/exchange-rate?from=eth&to=usd
+```
+
+Returns the current exchange rate for pair: cryptocurrencies to fiat currencies.
+
+Get All Accounts
+
+```bash
+GET /accounts
+```
+
+Returns a list of all existing accounts.
+
+Get Account by ID
+
+```bash
+GET /accounts/:id
+```
+
+Returns the account with the specified ID.
+
+Create a New Account
+
+```bash
+POST /accounts
+```
+
+Creates a new account with the provided data.
+
+You can also view the Swagger documentation for these endpoints by visiting http://localhost:3000/api in your browser after starting the server.
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+This project is licensed under the [MIT License]
