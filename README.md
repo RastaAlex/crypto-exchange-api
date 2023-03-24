@@ -76,6 +76,14 @@ For Docker use:
 npm run start:docker:db
 ```
 
+### Setting up Prisma
+
+Applies migrations to the database specified in the schema.prisma file.
+
+```bash
+npx prisma migrate dev --schema src/database/schema.prisma
+```
+
 ### Running the Application
 
 ```bash
