@@ -6,25 +6,25 @@ export class CryptoAccountDto implements Partial<Account> {
   @ApiProperty()
   @IsNotEmpty()
   @IsNumber()
-  id: number;
+    id: number;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  cryptoAsset: string;
+    cryptoAsset: string;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  referenceCurrency: string;
+    referenceCurrency: string;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsNumber()
-  balanceInCryptoAsset: number;
+    balanceInCryptoAsset: number;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsNumber()
-  balanceInReferenceCurrency: number;
+    balanceInReferenceCurrency: number;
 }

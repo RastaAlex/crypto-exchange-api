@@ -1,12 +1,12 @@
-import { 
+import {
+  BadRequestException,
   Body,
   Controller,
   Get,
-  Param,
-  Post,
-  BadRequestException,
-  ParseIntPipe,
   HttpException,
+  Param,
+  ParseIntPipe,
+  Post,
 } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
@@ -31,6 +31,7 @@ export class AccountsController {
     return (await this.accountsService.getAllAccounts()).map(account => {
       const dto = new CryptoAccountDto();
       Object.assign(dto, account);
+
       return dto;
     });
   }
@@ -47,6 +48,7 @@ export class AccountsController {
 
     const dto = new CryptoAccountDto();
     Object.assign(dto, account);
+
     return dto;
   }
 
@@ -59,6 +61,7 @@ export class AccountsController {
       const account = await this.accountsService.createAccount(dto);
       const responseDto = new CryptoAccountDto();
       Object.assign(responseDto, account);
+
       return responseDto;
     } catch (error) {
       if (error instanceof HttpException) {

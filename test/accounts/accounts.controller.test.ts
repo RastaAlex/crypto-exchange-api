@@ -15,7 +15,7 @@ describe('AccountsController', () => {
       controllers: [AccountsController],
       providers: [AccountsService, PrismaService, CryptoService],
     }).compile();
-  
+
     accountsController = module.get<AccountsController>(AccountsController);
     accountsService = module.get<AccountsService>(AccountsService);
   });
@@ -65,9 +65,9 @@ describe('AccountsController', () => {
 
     it('should throw BadRequestException if the account is not found', async () => {
       jest.spyOn(accountsService, 'getAccountById').mockImplementation(async () => null);
-  
+
       await expect(accountsController.fetchAccountById(42)).rejects.toThrow(BadRequestException);
-  
+
       expect(accountsService.getAccountById).toHaveBeenCalledWith(42);
     });
   });
@@ -97,6 +97,7 @@ describe('AccountsController', () => {
       expect(accountsService.createAccount).toHaveBeenCalledWith(CryptoAccountDto);
       expect(account).toMatchSnapshot();
     });
+
     it('should throw the HttpException if createAccount throws an HttpException', async () => {
       const cryptoAccountDto: CryptoAccountDto = {
         id: 1,
@@ -105,17 +106,17 @@ describe('AccountsController', () => {
         balanceInCryptoAsset: 1,
         balanceInReferenceCurrency: 1,
       };
-  
+
       const testError = new HttpException('Test error', 500);
       jest.spyOn(accountsService, 'createAccount').mockImplementation(async () => {
         throw testError;
       });
-  
+
       await expect(accountsController.createAccount(cryptoAccountDto)).rejects.toThrow(testError);
-  
+
       expect(accountsService.createAccount).toHaveBeenCalledWith(cryptoAccountDto);
     });
-  
+
     it('should throw a BadRequestException if createAccount throws a non-HttpException', async () => {
       const cryptoAccountDto: CryptoAccountDto = {
         id: 1,
@@ -124,13 +125,13 @@ describe('AccountsController', () => {
         balanceInCryptoAsset: 1,
         balanceInReferenceCurrency: 1,
       };
-  
+
       jest.spyOn(accountsService, 'createAccount').mockImplementation(async () => {
         throw new Error('Non-HttpException');
       });
-  
+
       await expect(accountsController.createAccount(cryptoAccountDto)).rejects.toThrow(BadRequestException);
-  
+
       expect(accountsService.createAccount).toHaveBeenCalledWith(cryptoAccountDto);
     });
   });

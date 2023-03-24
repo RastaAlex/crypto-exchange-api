@@ -3,7 +3,7 @@ import { OnModuleInit } from '@nestjs/common';
 
 export class CryptoService implements OnModuleInit {
   private ws: WebSocket;
-  private exchangeRates: Record<string, number> = {};
+  public exchangeRates: Record<string, number> = {};
 
   init() {
     this.ws = new WebSocket('wss://ws.kraken.com');
@@ -38,10 +38,16 @@ export class CryptoService implements OnModuleInit {
 
       const rate = parseFloat(message[1].c);
 
-      this.exchangeRates[pair] = rate;;
+      this.exchangeRates[pair] = rate;
     }
   }
 
+
+  /**
+   * Returns the exchange rate for the specified crypto/fiat currency pair.
+   * @param pair - The crypto/fiat currency pair
+   * @returns - The current exchange rate for the specified pair
+   */
   getExchangeRate(pair: string): number {
     return this.exchangeRates[pair];
   }

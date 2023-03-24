@@ -26,7 +26,7 @@ describe('CryptoController', () => {
       const result = await cryptoController.getCurrencyExchangeRate('btc', 'usd');
 
       expect(cryptoService.getExchangeRate).toHaveBeenCalledWith(mockPair);
-      expect(result).toEqual({[mockPair]: mockRate});
+      expect(result).toEqual({ [mockPair]: mockRate });
     });
   });
 });

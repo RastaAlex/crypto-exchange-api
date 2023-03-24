@@ -7,14 +7,14 @@
   "license": "MIT",
   "scripts": {
     "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "start:docker": "docker-compose up -d",
-    "lint": "npx eslint -c .eslintrc.json src --ext .ts,.js src jest.config.js",
-    "lint:fix": "npx eslint -c .eslintrc.json src --ext .ts,.js src jest.config.js --fix",
+    "start:docker:db": "docker-compose up -d db",
+    "lint": "npx eslint -c .eslintrc.json 'src/**/*.ts' 'test/**/*.ts' jest.config.js",
+    "lint:fix": "npx eslint -c .eslintrc.json 'src/**/*.ts' 'test/**/*.ts' jest.config.js --fix",
     "test": "npx jest -c jest.config.js --u"
   },
   "dependencies": {

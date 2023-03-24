@@ -16,6 +16,11 @@ export class AccountsService implements OnModuleInit {
     cron.schedule('0 0 * * *', () => this.updateAccountBalances());
   }
 
+  /**
+   * Creates a new account with the given data.
+   * @param {CryptoAccountDto} CryptoAccountDto
+   * @returns {Promise<Account>}
+   */
   async createAccount(CryptoAccountDto: CryptoAccountDto): Promise<Account> {
     const { cryptoAsset, referenceCurrency, balanceInCryptoAsset } = CryptoAccountDto;
 
@@ -29,17 +34,32 @@ export class AccountsService implements OnModuleInit {
     });
   }
 
+  /**
+   * Returns an array of all accounts in the database.
+   * @returns {Promise<Account[]>}
+   */
   async getAllAccounts(): Promise<Account[]> {
     return await this.prismaService.account.findMany();
   }
 
+
+  /**
+   * Returns the account with the given ID
+   * @param {number} id
+   * @returns {Promise<Account | null>}
+   */
   async getAccountById(id: number): Promise<Account | null> {
     const account = await this.prismaService.account.findUnique({
       where: { id },
     });
+
     return account;
   }
 
+  /**
+   * Updates the balances of all accounts in the database based on the current exchange rates.
+   * @returns {Promise<void>}
+   */
   public async updateAccountBalances() {
     const accounts = await this.getAllAccounts();
 
