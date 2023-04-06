@@ -24,6 +24,13 @@ export class CryptoService implements OnModuleInit {
     this.ws.on('message', (data: WebSocket.Data) => {
       this.handleMessage(data);
     });
+
+    this.ws.on('close', () => {
+      console.log('WebSocket disconnected, attempting to reconnect...');
+      setTimeout(() => {
+        this.init();
+      }, 5000);
+    });
   }
 
   private handleMessage(data: WebSocket.Data) {
