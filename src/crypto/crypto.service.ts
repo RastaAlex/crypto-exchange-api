@@ -42,7 +42,6 @@ export class CryptoService implements OnModuleInit {
     }
   }
 
-
   /**
    * Returns the exchange rate for the specified crypto/fiat currency pair.
    * @param pair - The crypto/fiat currency pair

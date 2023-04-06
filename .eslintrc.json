@@ -107,7 +107,8 @@
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "jest-formatting/padding-around-describe-blocks": 2,
-    "jest-formatting/padding-around-test-blocks": 2
+    "jest-formatting/padding-around-test-blocks": 2,
+    "no-multiple-empty-lines": ["warn", { "max": 1, "maxEOF": 1 }]
   },
   "overrides": [{
     "files": ["test/**"],
@@ -116,6 +117,8 @@
     "plugin:jest/recommended"
     ],
     "rules": {
+      "eol-last": ["warn", "always"],
+      "no-multiple-empty-lines": ["warn", { "max": 1, "maxEOF": 1 }],
       "jest/no-disabled-tests": "warn",
       "jest/no-focused-tests": "error",
       "jest/no-identical-title": "error",

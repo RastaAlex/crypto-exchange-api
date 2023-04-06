@@ -42,7 +42,6 @@ export class AccountsService implements OnModuleInit {
     return await this.prismaService.account.findMany();
   }
 
-
   /**
    * Returns the account with the given ID
    * @param {number} id
