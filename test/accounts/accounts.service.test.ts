@@ -3,6 +3,7 @@ import { AccountsService } from '@accounts/accounts.service';
 import { PrismaService } from '@database/prisma.service';
 import { CryptoService } from '@crypto/crypto.service';
 import { CryptoAccountDto } from '@accounts/dtos/crypto-account.dto';
+import { Account } from '@prisma/client';
 
 jest.useFakeTimers();
 
@@ -60,4 +61,47 @@ describe('AccountsService', () => {
       expect(accounts).toMatchSnapshot();
     });
   });
+
+  describe('mapAccountToDto', () => {
+    it('should map an account to a CryptoAccountDto', async () => {
+      const account: Account = {
+        id: 1,
+        cryptoAsset: 'BTC',
+        referenceCurrency: 'USD',
+        balanceInCryptoAsset: 1,
+        balanceInReferenceCurrency: 10,
+      };
+
+      const dto = await accountsService.mapAccountToDto(account);
+      expect(dto).toBeDefined();
+      expect(dto).toMatchSnapshot();
+    });
+  });
+
+  describe('mapAccountsToDtos', () => {
+    it('should map an array of accounts to an array of CryptoAccountDtos', async () => {
+      const accounts: Account[] = [
+        {
+          id: 1,
+          cryptoAsset: 'BTC',
+          referenceCurrency: 'USD',
+          balanceInCryptoAsset: 1,
+          balanceInReferenceCurrency: 10,
+        },
+        {
+          id: 2,
+          cryptoAsset: 'ETH',
+          referenceCurrency: 'USD',
+          balanceInCryptoAsset: 2,
+          balanceInReferenceCurrency: 20,
+        },
+      ];
+
+      const dtos = await accountsService.mapAccountsToDtos(accounts);
+      expect(dtos).toBeDefined();
+      expect(dtos).toHaveLength(2);
+      expect(dtos).toMatchSnapshot();
+    });
+  });
+
 });

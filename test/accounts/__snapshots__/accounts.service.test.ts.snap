@@ -5,7 +5,7 @@ exports[`AccountsService createAccount should create a new account 1`] = `
   "balanceInCryptoAsset": 1,
   "balanceInReferenceCurrency": 0,
   "cryptoAsset": "BTC",
-  "id": 133,
+  "id": 5,
   "referenceCurrency": "USD",
 }
 `;
@@ -16,7 +16,36 @@ exports[`AccountsService getAllAccounts should return all accounts 1`] = `
     "balanceInCryptoAsset": 1,
     "balanceInReferenceCurrency": 0,
     "cryptoAsset": "BTC",
-    "id": 134,
+    "id": 6,
+    "referenceCurrency": "USD",
+  },
+]
+`;
+
+exports[`AccountsService mapAccountToDto should map an account to a CryptoAccountDto 1`] = `
+CryptoAccountDto {
+  "balanceInCryptoAsset": 1,
+  "balanceInReferenceCurrency": 10,
+  "cryptoAsset": "BTC",
+  "id": 1,
+  "referenceCurrency": "USD",
+}
+`;
+
+exports[`AccountsService mapAccountsToDtos should map an array of accounts to an array of CryptoAccountDtos 1`] = `
+[
+  CryptoAccountDto {
+    "balanceInCryptoAsset": 1,
+    "balanceInReferenceCurrency": 10,
+    "cryptoAsset": "BTC",
+    "id": 1,
+    "referenceCurrency": "USD",
+  },
+  CryptoAccountDto {
+    "balanceInCryptoAsset": 2,
+    "balanceInReferenceCurrency": 20,
+    "cryptoAsset": "ETH",
+    "id": 2,
     "referenceCurrency": "USD",
   },
 ]

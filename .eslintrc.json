@@ -56,10 +56,6 @@
         "functions": "always-multiline"
       }
     ],
-    "eol-last": [
-      "warn",
-      "always"
-    ],
     "padding-line-between-statements": [
       "error",
       { "blankLine": "always", "prev": "*", "next": "return" }
@@ -108,7 +104,8 @@
     "@typescript-eslint/ban-ts-comment": "off",
     "jest-formatting/padding-around-describe-blocks": 2,
     "jest-formatting/padding-around-test-blocks": 2,
-    "no-multiple-empty-lines": ["warn", { "max": 1, "maxEOF": 1 }]
+    "eol-last": ["warn", "always"],
+    "no-multiple-empty-lines": ["warn", { "max": 1, "maxEOF": 0 }]
   },
   "overrides": [{
     "files": ["test/**"],

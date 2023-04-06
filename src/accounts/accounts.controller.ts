@@ -28,12 +28,9 @@ export class AccountsController {
   @ApiOkResponse({ type: [CryptoAccountDto], description: 'Get all accounts' })
   @ApiOperation({ summary: 'Get all accounts' })
   async getAllAccounts(): Promise<CryptoAccountDto[]> {
-    return (await this.accountsService.getAllAccounts()).map(account => {
-      const dto = new CryptoAccountDto();
-      Object.assign(dto, account);
+    const accounts = await this.accountsService.getAllAccounts();
 
-      return dto;
-    });
+    return this.accountsService.mapAccountsToDtos(accounts);
   }
 
   @Get(':id')
@@ -46,10 +43,7 @@ export class AccountsController {
       throw new BadRequestException('Account not found');
     }
 
-    const dto = new CryptoAccountDto();
-    Object.assign(dto, account);
-
-    return dto;
+    return this.accountsService.mapAccountToDto(account);
   }
 
   @Post()
@@ -59,10 +53,8 @@ export class AccountsController {
   async createAccount(@Body() dto: CryptoAccountDto): Promise<CryptoAccountDto> {
     try {
       const account = await this.accountsService.createAccount(dto);
-      const responseDto = new CryptoAccountDto();
-      Object.assign(responseDto, account);
 
-      return responseDto;
+      return this.accountsService.mapAccountToDto(account);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;

@@ -43,6 +43,27 @@ export class AccountsService implements OnModuleInit {
   }
 
   /**
+   * Maps an Account instance to a CryptoAccountDto instance.
+   * @param {Account} account
+   * @returns {Promise<CryptoAccountDto>}
+   */
+  async mapAccountToDto(account: Account): Promise<CryptoAccountDto> {
+    const dto = new CryptoAccountDto();
+    Object.assign(dto, account);
+
+    return dto;
+  }
+
+  /**
+   * Maps an array of Accounts instances to an array of CryptoAccountDto instances.
+   * @param {Account[]} accounts
+   * @returns {Promise<CryptoAccountDto[]>}
+   */
+  async mapAccountsToDtos(accounts: Account[]): Promise<CryptoAccountDto[]> {
+    return Promise.all(accounts.map(account => this.mapAccountToDto(account)));
+  }
+
+  /**
    * Returns the account with the given ID
    * @param {number} id
    * @returns {Promise<Account | null>}
