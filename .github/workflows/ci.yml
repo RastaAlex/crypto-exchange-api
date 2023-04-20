@@ -1,0 +1,43 @@
+name: crypto-exchange-api
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Run Linter
+      run: npm run lint
+
+    - name: Create coverage dir and apply chown
+      run: mkdir ${{ github.workspace }}/coverage && chown -R runner:docker ${{ github.workspace }}
+
+    - name: Run node tests via docker-compose
+      run: npm run test:docker
+
+    - name: Jest coverage report
+      uses: ArtiomTr/jest-coverage-report-action@v2.0.6
+        with:
+          skip-step: all
+          coverage-file: ./coverage/report.json
+          github-token: ${{ github.token }}  

@@ -15,7 +15,8 @@
     "start:docker:db": "docker-compose up -d db",
     "lint": "npx eslint -c .eslintrc.json 'src/**/*.ts' 'test/**/*.ts' jest.config.js",
     "lint:fix": "npx eslint -c .eslintrc.json 'src/**/*.ts' 'test/**/*.ts' jest.config.js --fix",
-    "test": "npx jest -c jest.config.js --u"
+    "test": "npx jest -c jest.config.js",
+    "test:docker": "docker-compose -f docker-compose.test.yaml up --abort-on-container-exit --exit-code-from test test"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
