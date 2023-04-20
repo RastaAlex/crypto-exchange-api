@@ -16,7 +16,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  api:
+  test:
     build: .
     environment:
       NODE_ENV: test
