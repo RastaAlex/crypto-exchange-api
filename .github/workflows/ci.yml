@@ -37,7 +37,7 @@ jobs:
 
     - name: Jest coverage report
       uses: ArtiomTr/jest-coverage-report-action@v2.0.6
-        with:
-          skip-step: all
-          coverage-file: ./coverage/report.json
-          github-token: ${{ github.token }}  
+      with:
+        skip-step: all
+        coverage-file: ./coverage/report.json
+        github-token: ${{ github.token }}  
